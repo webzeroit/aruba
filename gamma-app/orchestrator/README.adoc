@@ -1,0 +1,13 @@
+Once the application is running, the API and resource server will be listening
+for requests on port 8080.
+
+== Consuming the API
+
+
+In order to successfully access the `/secured` endpoint, you'll need to provide
+a valid access token in the `Authorization` header of the request. Assuming that you
+have followed the instructions in the jjwt-authorization-server project's README to obtain
+an access token.
+
+
+

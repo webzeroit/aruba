@@ -1,0 +1,60 @@
+Once the application is running, the authorization server will be listening
+for requests on port 9999.
+
+== Obtaining an access token
+
+This authorization server uses in-memory stores for both users and clients.
+In-memory stores were chosen to simplify the example. In a real production-ready
+scenario, you should use a different store (JDBC-based, for example).
+
+There are two users:
+
+ * **Username**: raffaele; **Password**: password
+ * **Username**: michele; **Password**: password
+
+There is only one client:
+
+ * **Client ID**: myclient; **Client Secret**: secret
+
+Using the `curl` command line tool, you can request a token as follows
+(for the "raffaele" user):
+
+[source,sh]
+----
+$ curl http://localhost:9999/oauth/token \
+    -d"grant_type=password&username=raffaele&password=password" \
+    -H"Content-type:application/x-www-form-urlencoded; charset=utf-8" \
+    -u myclient:secret
+----
+
+== Obtaining an access token via Client Credentials Grant
+
+If the resources your client is accessing are not user-specific, the client
+can obtain a token via Client Credentials Grant.
+
+Using the `curl` command line tool, you can request a token as follows
+(for the "raffaele" user):
+
+[source,sh]
+----
+$ curl http://localhost:9999/oauth/token \
+    -d"grant_type=client_credentials" \
+    -H"Content-type:application/x-www-form-urlencoded; charset=utf-8" \
+    -u myclient:secret
+----
+
+== Obtaining an access token via Authorization Code Grant
+
+
+```
+http://localhost:9999/oauth/authorize?client_id=myclient&response_type=code&redirect_uri=http://localhost:9191/x
+```
+
+
+
+== Obtaining an access token via Implicit Grant
+
+
+```
+http://localhost:9999/oauth/authorize?client_id=myclient&response_type=token&redirect_uri=http://localhost:9191/x
+```
